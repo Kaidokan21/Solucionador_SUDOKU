@@ -114,24 +114,24 @@ int validar(int linha, int coluna, int valor)		// Verifica se um determinado nú
 	int i, j, l, c;
 
 	if (original[linha][coluna] != 0)
-		if (original[linha][coluna] != valor)
-			return 0;
+		if (original[linha][coluna] != valor) 
+			return 0;	// Se algum numero for igual entre linha ou coluna, não é válido
 
 	for (i = 0; i < 9; i++) {
 		if (i != coluna)
 			if (grelha[linha][i] == valor)
-				return 0;
+				return 0; 
 
 		if (i != linha)
 			if (grelha[i][coluna] == valor)
-				return 0;
+				return 0; 
 	}
 
 	l = (linha / 3) * 3;
 	c = (coluna / 3) * 3;
-	for (i = l; i < l + 3; i++)
+	for (i = l; i < l + 3; i++) 
 		for (j = c; j < c + 3; j++)
-			if (i != linha || j != coluna)
+			if (i != linha || j != coluna)	// verifica correnspondencia de número pelas linhas e colunas da subrelha
 				if (grelha[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
 					return 0;	// retorna 0 caso valor seja inválido para a célula atual
 
