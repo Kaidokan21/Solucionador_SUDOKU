@@ -22,11 +22,11 @@ int main()
 		return 0;
 	}
 
-	printf("Valido!\n\nresolvendo puzzle:\n");
+	printf("Valido!\n\nResolvendo Puzzle:\n");
 	print_grelha();
 
 	if (! resolver_celula(0, 0)) {
-		printf("\ninfelizmente, o seu puzzle e' impossivel de resolver...\n");
+		printf("\nInfelizmente o seu puzzle e' impossivel de resolver...\n");
 		return 0;
 	}
 
@@ -35,7 +35,7 @@ int main()
 	return 0;
 }
 
-int inserir_grelha()
+int inserir_grelha() 		// Pedir utilizador para inserir as linhas do puzzle
 {
 	int caractere, linha, coluna;
 	linha = coluna = 0;
@@ -68,7 +68,7 @@ int inserir_grelha()
 	return 1;
 }
 
-int validar_grelha()
+int validar_grelha() 		// Verificar se puzzle de entrada é válido
 {
 	int i, j;
 
@@ -81,7 +81,7 @@ int validar_grelha()
 	return 1;
 }
 
-int resolver_celula(int linha, int coluna)
+int resolver_celula(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
 {
 	int numero = 1;
 
@@ -109,7 +109,7 @@ int resolver_celula(int linha, int coluna)
 	return 0;
 }
 
-int validar(int linha, int coluna, int valor)
+int validar(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
 {
 	int i, j, l, c;
 
@@ -138,7 +138,7 @@ int validar(int linha, int coluna, int valor)
 	return 1;
 }
 
-void print_grelha()
+void print_grelha()		// Imprime o puzzle de entrada e o resultado final
 {
 	int i, j;
 
