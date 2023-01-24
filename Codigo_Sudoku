@@ -91,7 +91,7 @@ int resolver_celula(int linha, int coluna)		// Utilização do método Backtrack
 	}
 
 	if (linha == 9)
-		return 1; // se a linha for =) logo puzzle foi resolvido
+		return 1; // se a linha for =9 logo puzzle foi resolvido
 
 	while (numero < 10) {
 		if (validar(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
