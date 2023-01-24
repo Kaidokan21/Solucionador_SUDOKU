@@ -106,7 +106,7 @@ int resolver_celula(int linha, int coluna)		// Utilização do método Backtrack
 		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
 	}
 
-	return 0; // see o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
+	return 0; // Se o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
 }
 
 int validar(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
@@ -132,8 +132,8 @@ int validar(int linha, int coluna, int valor)		// Verifica se um determinado nú
 	for (i = l; i < l + 3; i++)
 		for (j = c; j < c + 3; j++)
 			if (i != linha || j != coluna)
-				if (grelha[i][j] == valor)
-					return 0;
+				if (grelha[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
+					return 0;	// retorna 0 caso valor seja inválido para a célula atual
 
 	return 1;
 }
@@ -144,18 +144,18 @@ void print_grelha()		// Imprime o puzzle de entrada e o resultado final
 
 	for (i = 0; i < 10; i++) {
 		if (i % 3 == 0)
-			printf("+-------+-------+-------+\n");
+			printf("+-------+-------+-------+\n"); 	// Linhas horizontais
 
 		if (i == 9)
-			return;
+			return; // se a linha for =9 então retorna sem fazer nada pois a grelha é 9x9
 
 		for (j = 0; j < 9; j++) {
 			if (j % 3 == 0)
 				printf("| ");
 
-			grelha[i][j] != 0 ? printf("%d ", grelha[i][j]) : printf(". ");
+			grelha[i][j] != 0 ? printf("%d ", grelha[i][j]) : printf(". "); 
 		}
 
-		printf("|\n");
+		printf("|\n"); // Linhas verticais
 	}
 }
