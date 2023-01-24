@@ -45,15 +45,15 @@ int inserir_grelha() 		// Pedir utilizador para inserir as linhas do puzzle
 	while (linha < 9) {
 		caractere = getchar();
 
-		if ('0' <= caractere && caractere <= '9' || caractere == '.') {
-			if (coluna > 8) {
+		if ('0' <= caractere && caractere <= '9' || caractere == '.') {	 // verifica se input é entre 0 e 9 ou um "."
+			if (coluna > 8) { 
 				printf("Erro: cada linha tem no maximo 9 celulas...\n");
 				return 0;
 			}
 
-			if (caractere != '.')
-				original[linha][coluna] =
-					grelha[linha][coluna] = caractere - '0';
+			if (caractere != '.') 	
+				original[linha][coluna] = 
+					grelha[linha][coluna] = caractere - '0'; 	// se não for "." atribui-se o valor '0' ao caractere
 
 			coluna++;
 
@@ -61,7 +61,7 @@ int inserir_grelha() 		// Pedir utilizador para inserir as linhas do puzzle
 			coluna = 0;
 			linha++;
 
-			printf("Linha %i: ", linha + 1);
+			printf("Linha %i: ", linha + 1); // pedir pela próxima linha
 		}
 	}
 
@@ -73,12 +73,12 @@ int validar_grelha() 		// Verificar se puzzle de entrada é válido
 	int i, j;
 
 	for (i = 0; i < 9; i++)
-		for (j = 0; j < 9; j++)
+		for (j = 0; j < 9; j++) // percorrer as células da grelha
 			if (grelha[i][j])
-				if (! validar(i, j, grelha[i][j]))
-					return 0;
+				if (! validar(i, j, grelha[i][j])) // chamar função "validar" para verificar se o valor da célula atual pode ser usado
+					return 0; 	// retornar 0 se puzzle for inválido
 
-	return 1;
+	return 1; 	// retornar 1 apenas se o valor é único ou 0
 }
 
 int resolver_celula(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
@@ -91,22 +91,22 @@ int resolver_celula(int linha, int coluna)		// Utilização do método Backtrack
 	}
 
 	if (linha == 9)
-		return 1;
+		return 1; // se a linha for =) logo puzzle foi resolvido
 
 	while (numero < 10) {
-		if (validar(linha, coluna, numero)) {
+		if (validar(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
 			grelha[linha][coluna] = numero;
 
 			if (resolver_celula(linha, coluna + 1))
-				return 1;
+				return 1;	// se "resolver_celula" retornar 1 então a função retorna 1 e declara que o puzzle foi resolvido.
 		}
 
 		grelha[linha][coluna] = 0;
 
-		numero++;
+		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
 	}
 
-	return 0;
+	return 0; // see o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
 }
 
 int validar(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
