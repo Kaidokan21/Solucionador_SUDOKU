@@ -86,8 +86,8 @@ int resolver_celula(int linha, int coluna)		// Utilização do método Backtrack
 	int numero = 1;
 
 	if (coluna == 9) {
-		coluna = 0;
-		linha++;
+		coluna = 0;	//verifica se a coluna é =9, caso seja, resetar e tornar 0
+		linha++;	//incrementar linha
 	}
 
 	if (linha == 9)
@@ -98,7 +98,7 @@ int resolver_celula(int linha, int coluna)		// Utilização do método Backtrack
 			grelha[linha][coluna] = numero;
 
 			if (resolver_celula(linha, coluna + 1))
-				return 1;	// se "resolver_celula" retornar 1 então a função retorna 1 e declara que o puzzle foi resolvido.
+				return 1;	// se "resolver_celula" retornar 1, então a função retorna 1 e declara que o puzzle foi resolvido.
 		}
 
 		grelha[linha][coluna] = 0;
