@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>  //abrir outros ficheiros
+
+int main()
+{
+	int opcao;
+	
+	printf("Deseja solucionar apenas 1 sudoku ou deseja solucionar 4 em simultaneo?\nOpcoes: 1 (1 Sudoku) || 2 (4 Sudokus)\n");
+	scanf(" %d", &opcao);
+
+	if( opcao == 1){
+	
+		system("1Sudoku.exe");  //se a opção for =1, abrir o ficheiro 1Sudoku.exe que irá solucionar somente 1 sudoku
+		
+		
+	}else if( opcao == 2 ){
+		
+		system("4Sudokus.exe"); //se a opção for =2, abrir o ficheiro 4Sudoku.exe que irá solucionar 4 sudokus em simultâneo
+	
+	}
+	
+	return 0;
+}
