@@ -1,0 +1,608 @@
+#include <stdio.h>
+
+int inserir_grelha1();
+int validar_grelha1();
+int resolver_celula1(int linha, int coluna);
+int validar1(int linha, int coluna, int valor);
+
+int inserir_grelha2();
+int validar_grelha2();
+int resolver_celula2(int linha, int coluna);
+int validar2(int linha, int coluna, int valor);
+
+int inserir_grelha3();
+int validar_grelha3();
+int resolver_celula3(int linha, int coluna);
+int validar3(int linha, int coluna, int valor);
+
+int inserir_grelha4();
+int validar_grelha4();
+int resolver_celula4(int linha, int coluna);
+int validar4(int linha, int coluna, int valor);
+
+void print_grelha1();
+void print_grelha2();
+void print_grelha3();
+void print_grelha4();
+
+
+int original1[4][4], grelha1[4][4];
+int original2[4][4], grelha2[4][4];
+int original3[4][4], grelha3[4][4];
+int original4[4][4], grelha4[4][4];
+
+int main()
+{	
+	if (! inserir_grelha1()) {
+		printf("Erro: incapaz de inserir grelha...\n");
+		return 0;
+	}
+	if (! inserir_grelha2()) {
+		printf("Erro: incapaz de inserir grelha...\n");
+		return 0;
+	}
+	if (! inserir_grelha3()) {
+		printf("Erro: incapaz de inserir grelha...\n");
+		return 0;
+	}
+	if (! inserir_grelha4()) {
+		printf("Erro: incapaz de inserir grelha...\n");
+		return 0;
+	}
+
+	printf("\nA validar puzzle 1... \n");
+	if (! validar_grelha1()) {
+		printf("Puzzle 1 Invalido!\n");
+		return 0;
+	}
+		printf("\nA validar puzzle 2... \n");
+	if (! validar_grelha2()) {
+		printf("Puzzle 2 Invalido!\n");
+		return 0;
+	}
+		printf("\nA validar puzzle 3... \n");
+	if (! validar_grelha3()) {
+		printf("Puzzle 3 Invalido!\n");
+		return 0;
+	}
+		printf("\nA validar puzzle 4... \n");
+	if (! validar_grelha4()) {
+		printf("Puzzle 4 Invalido!\n");
+		return 0;
+	}
+ 
+	printf("Puzzle 1 Valido!\n\nResolvendo Puzzle 1:\n");
+	print_grelha1();
+	printf("Puzzle 2 Valido!\n\nResolvendo Puzzle 2:\n");
+	print_grelha2();
+	printf("Puzzle 3 Valido!\n\nResolvendo Puzzle 3:\n");
+	print_grelha3();
+	printf("Puzzle 4 Valido!\n\nResolvendo Puzzle 4:\n");
+	print_grelha4();
+
+	if (! resolver_celula1(0, 0)) {
+		printf("\nInfelizmente o puzzle 1 e' impossivel de resolver...\n");
+		return 0;
+	}
+	if (! resolver_celula2(0, 0)) {
+		printf("\nInfelizmente o puzzle 2 e' impossivel de resolver...\n");
+		return 0;
+	}
+	if (! resolver_celula3(0, 0)) {
+		printf("\nInfelizmente o puzzle 3 e' impossivel de resolver...\n");
+		return 0;
+	}
+	if (! resolver_celula4(0, 0)) {
+		printf("\nInfelizmente o puzzle 4 e' impossivel de resolver...\n");
+		return 0;
+	}
+
+	printf("\nPuzzle Solucionado 1:\n");
+	print_grelha1();
+		printf("\nPuzzle Solucionado 2:\n");
+	print_grelha2();
+		printf("\nPuzzle Solucionado 3:\n");
+	print_grelha3();
+		printf("\nPuzzle Solucionado 4:\n");
+	print_grelha4();
+	
+	return 0;
+	
+}
+
+int inserir_grelha1() 		// Pedir utilizador para inserir as linhas do puzzle
+{
+	int caractere, linha, coluna;
+	linha = coluna = 0;
+
+	printf("\n Inserir Puzzle 1, linha por linha. Utilize numeros para celulas conhecidas, zeros ou pontos para celulas desconhecidas.\n(Apenas numeros 1-4, caso seja diferente destes sera considerado um espaco vazio) \n\nLinha 1: ");
+
+	while (linha < 4) {
+		caractere = getchar();
+
+		if (('0' <= caractere && caractere <= '4') || (caractere == '.')) {	 // verifica se input é entre 0 e 4 ou um "."
+			if (coluna > 3) { 
+				printf("Erro: cada linha tem no maximo 4 celulas...\n");
+				return 0;
+			}
+
+			if (caractere != '.') 	
+				original1[linha][coluna] = 
+				grelha1[linha][coluna] = caractere - '0'; 	// se não for "." atribui-se o valor '0' ao caractere
+			coluna++;
+			
+		} else if (caractere == '\n') {
+			coluna = 0;
+			linha++;
+
+			printf("Linha %i: ", linha + 1); // pedir pela próxima linha
+		}
+	}
+
+	return 1;
+}
+
+int inserir_grelha2() 		// Pedir utilizador para inserir as linhas do puzzle
+{
+	int caractere, linha, coluna;
+	linha = coluna = 0;
+
+	printf("\n Inserir Puzzle 2, linha por linha. Utilize numeros para celulas conhecidas, zeros ou pontos para celulas desconhecidas.\n(Apenas numeros 1-4, caso seja diferente destes sera considerado um espaco vazio) \n\nLinha 1: ");
+
+	while (linha < 4) {
+		caractere = getchar();
+
+		if (('0' <= caractere && caractere <= '4') || (caractere == '.')) {	 // verifica se input é entre 0 e 4 ou um "."
+			if (coluna > 3) { 
+				printf("Erro: cada linha tem no maximo 4 celulas...\n");
+				return 0;
+			}
+
+			if (caractere != '.') 	
+				original2[linha][coluna] = 
+				grelha2[linha][coluna] = caractere - '0'; 	// se não for "." atribui-se o valor '0' ao caractere
+			coluna++;
+			
+		} else if (caractere == '\n') {
+			coluna = 0;
+			linha++;
+
+			printf("Linha %i: ", linha + 1); // pedir pela próxima linha
+		}
+	}
+
+	return 1;
+}
+
+int inserir_grelha3() 		// Pedir utilizador para inserir as linhas do puzzle
+{
+	int caractere, linha, coluna;
+	linha = coluna = 0;
+
+	printf("\n Inserir Puzzle 3, linha por linha. Utilize numeros para celulas conhecidas, zeros ou pontos para celulas desconhecidas.\n(Apenas numeros 1-4, caso seja diferente destes sera considerado um espaco vazio) \n\nLinha 1: ");
+
+	while (linha < 4) {
+		caractere = getchar();
+
+		if (('0' <= caractere && caractere <= '4') || (caractere == '.')) {	 // verifica se input é entre 0 e 4 ou um "."
+			if (coluna > 3) { 
+				printf("Erro: cada linha tem no maximo 4 celulas...\n");
+				return 0;
+			}
+
+			if (caractere != '.') 	
+				original3[linha][coluna] = 
+				grelha3[linha][coluna] = caractere - '0'; 	// se não for "." atribui-se o valor '0' ao caractere
+			coluna++;
+			
+		} else if (caractere == '\n') {
+			coluna = 0;
+			linha++;
+
+			printf("Linha %i: ", linha + 1); // pedir pela próxima linha
+		}
+	}
+
+	return 1;
+}
+
+int inserir_grelha4() 		// Pedir utilizador para inserir as linhas do puzzle
+{
+	int caractere, linha, coluna;
+	linha = coluna = 0;
+
+	printf("\n Inserir Puzzle 4, linha por linha. Utilize numeros para celulas conhecidas, zeros ou pontos para celulas desconhecidas.\n(Apenas numeros 1-4, caso seja diferente destes sera considerado um espaco vazio) \n\nLinha 1: ");
+
+	while (linha < 4) {
+		caractere = getchar();
+
+		if (('0' <= caractere && caractere <= '4') || (caractere == '.')) {	 // verifica se input é entre 0 e 4 ou um "."
+			if (coluna > 3) { 
+				printf("Erro: cada linha tem no maximo 4 celulas...\n");
+				return 0;
+			}
+
+			if (caractere != '.') 	
+				original4[linha][coluna] = 
+				grelha4[linha][coluna] = caractere - '0'; 	// se não for "." atribui-se o valor '0' ao caractere
+			coluna++;
+			
+		} else if (caractere == '\n') {
+			coluna = 0;
+			linha++;
+
+			printf("Linha %i: ", linha + 1); // pedir pela próxima linha
+		}
+	}
+
+	return 1;
+}
+
+int validar_grelha1() 		// Verificar se puzzle de entrada é válido
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++) // percorrer as células da grelha
+			if (grelha1[i][j])
+				if (! validar1(i, j, grelha1[i][j])) // chamar função "validar" para verificar se o valor da célula atual pode ser usado
+					return 0; 	// retornar 0 se puzzle for inválido
+
+	return 1; 	// retornar 1 apenas se o valor é único ou 0
+}
+
+int validar_grelha2() 		// Verificar se puzzle de entrada é válido
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++) // percorrer as células da grelha
+			if (grelha2[i][j])
+				if (! validar2(i, j, grelha2[i][j])) // chamar função "validar" para verificar se o valor da célula atual pode ser usado
+					return 0; 	// retornar 0 se puzzle for inválido
+
+	return 1; 	// retornar 1 apenas se o valor é único ou 0
+}
+
+int validar_grelha3() 		// Verificar se puzzle de entrada é válido
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++) // percorrer as células da grelha
+			if (grelha3[i][j])
+				if (! validar3(i, j, grelha3[i][j])) // chamar função "validar" para verificar se o valor da célula atual pode ser usado
+					return 0; 	// retornar 0 se puzzle for inválido
+
+	return 1; 	// retornar 1 apenas se o valor é único ou 0
+}
+
+int validar_grelha4() 		// Verificar se puzzle de entrada é válido
+{
+	int i, j;
+
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++) // percorrer as células da grelha
+			if (grelha4[i][j])
+				if (! validar4(i, j, grelha4[i][j])) // chamar função "validar" para verificar se o valor da célula atual pode ser usado
+					return 0; 	// retornar 0 se puzzle for inválido
+
+	return 1; 	// retornar 1 apenas se o valor é único ou 0
+}
+
+int resolver_celula1(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
+{
+	int numero = 1;
+
+	if (coluna == 4) {
+		coluna = 0;	//verifica se a coluna é =4, caso seja, resetar e tornar 0
+		linha++;	//incrementar linha
+	}
+
+	if (linha == 4)
+		return 1; // se a linha for =4 logo puzzle foi resolvido
+
+	while (numero < 5) {
+		if (validar1(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
+			grelha1[linha][coluna] = numero;
+
+			if (resolver_celula1(linha, coluna + 1))
+				return 1;	// se "resolver_celula" retornar 1, então a função retorna 1 e declara que o puzzle foi resolvido.
+		}
+
+		grelha1[linha][coluna] = 0;
+
+		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
+	}
+
+	return 0; // Se o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
+}
+
+int resolver_celula2(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
+{
+	int numero = 1;
+
+	if (coluna == 4) {
+		coluna = 0;	//verifica se a coluna é =4, caso seja, resetar e tornar 0
+		linha++;	//incrementar linha
+	}
+
+	if (linha == 4)
+		return 1; // se a linha for =4 logo puzzle foi resolvido
+
+	while (numero < 5) {
+		if (validar2(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
+			grelha2[linha][coluna] = numero;
+
+			if (resolver_celula2(linha, coluna + 1))
+				return 1;	// se "resolver_celula" retornar 1, então a função retorna 1 e declara que o puzzle foi resolvido.
+		}
+
+		grelha2[linha][coluna] = 0;
+
+		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
+	}
+
+	return 0; // Se o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
+}
+
+int resolver_celula3(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
+{
+	int numero = 1;
+
+	if (coluna == 4) {
+		coluna = 0;	//verifica se a coluna é =4, caso seja, resetar e tornar 0
+		linha++;	//incrementar linha
+	}
+
+	if (linha == 4)
+		return 1; // se a linha for =4 logo puzzle foi resolvido
+
+	while (numero < 5) {
+		if (validar3(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
+			grelha3[linha][coluna] = numero;
+
+			if (resolver_celula3(linha, coluna + 1))
+				return 1;	// se "resolver_celula" retornar 1, então a função retorna 1 e declara que o puzzle foi resolvido.
+		}
+
+		grelha3[linha][coluna] = 0;
+
+		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
+	}
+
+	return 0; // Se o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
+}
+
+int resolver_celula4(int linha, int coluna)		// Utilização do método Backtracking para resolver o puzzle
+{
+	int numero = 1;
+
+	if (coluna == 4) {
+		coluna = 0;	//verifica se a coluna é =4, caso seja, resetar e tornar 0
+		linha++;	//incrementar linha
+	}
+
+	if (linha == 4)
+		return 1; // se a linha for =4 logo puzzle foi resolvido
+
+	while (numero < 5) {
+		if (validar4(linha, coluna, numero)) {	// chama "validar" para verificar se o número atual pode ser posto na célula atual
+			grelha4[linha][coluna] = numero;
+
+			if (resolver_celula4(linha, coluna + 1))
+				return 1;	// se "resolver_celula" retornar 1, então a função retorna 1 e declara que o puzzle foi resolvido.
+		}
+
+		grelha4[linha][coluna] = 0;
+
+		numero++;	//se o número não for valido ou "resolver_celula" não retornar 1 a função reseta a célula atual para 0 e incrementa o número.
+	}
+
+	return 0; // Se o loop for concluído sem retornar 1, a função retornará 0 indicando que o puzzle é impossível
+}
+
+int validar1(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
+{
+	int i, j, l, c;
+
+	if (original1[linha][coluna] != 0)
+		if (original1[linha][coluna] != valor) 
+			return 0;	// Se algum numero for igual entre linha ou coluna, não é válido
+
+	for (i = 0; i < 4; i++) {
+		if (i != coluna)
+			if (grelha1[linha][i] == valor)
+				return 0; 
+
+		if (i != linha)
+			if (grelha1[i][coluna] == valor)
+				return 0; 
+	}
+
+	l = (linha / 2) * 2;
+	c = (coluna / 2) * 2;
+	for (i = l; i < l + 2; i++) 
+		for (j = c; j < c + 2; j++)
+			if (i != linha || j != coluna)	// verifica correnspondencia de número pelas linhas e colunas da subrelha
+				if (grelha1[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
+					return 0;	// retorna 0 caso valor seja inválido para a célula atual
+
+	return 1;
+}
+
+int validar2(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
+{
+	int i, j, l, c;
+
+	if (original2[linha][coluna] != 0)
+		if (original2[linha][coluna] != valor) 
+			return 0;	// Se algum numero for igual entre linha ou coluna, não é válido
+
+	for (i = 0; i < 4; i++) {
+		if (i != coluna)
+			if (grelha2[linha][i] == valor)
+				return 0; 
+
+		if (i != linha)
+			if (grelha2[i][coluna] == valor)
+				return 0; 
+	}
+
+	l = (linha / 2) * 2;
+	c = (coluna / 2) * 2;
+	for (i = l; i < l + 2; i++) 
+		for (j = c; j < c + 2; j++)
+			if (i != linha || j != coluna)	// verifica correnspondencia de número pelas linhas e colunas da subrelha
+				if (grelha2[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
+					return 0;	// retorna 0 caso valor seja inválido para a célula atual
+
+	return 1;
+}
+
+int validar3(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
+{
+	int i, j, l, c;
+
+	if (original3[linha][coluna] != 0)
+		if (original3[linha][coluna] != valor) 
+			return 0;	// Se algum numero for igual entre linha ou coluna, não é válido
+
+	for (i = 0; i < 4; i++) {
+		if (i != coluna)
+			if (grelha3[linha][i] == valor)
+				return 0; 
+
+		if (i != linha)
+			if (grelha3[i][coluna] == valor)
+				return 0; 
+	}
+
+	l = (linha / 2) * 2;
+	c = (coluna / 2) * 2;
+	for (i = l; i < l + 2; i++) 
+		for (j = c; j < c + 2; j++)
+			if (i != linha || j != coluna)	// verifica correnspondencia de número pelas linhas e colunas da subrelha
+				if (grelha3[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
+					return 0;	// retorna 0 caso valor seja inválido para a célula atual
+
+	return 1;
+}
+
+int validar4(int linha, int coluna, int valor)		// Verifica se um determinado número ser colocado em determinada célula
+{
+	int i, j, l, c;
+
+	if (original4[linha][coluna] != 0)
+		if (original4[linha][coluna] != valor) 
+			return 0;	// Se algum numero for igual entre linha ou coluna, não é válido
+
+	for (i = 0; i < 4; i++) {
+		if (i != coluna)
+			if (grelha4[linha][i] == valor)
+				return 0; 
+
+		if (i != linha)
+			if (grelha4[i][coluna] == valor)
+				return 0; 
+	}
+
+	l = (linha / 2) * 2;
+	c = (coluna / 2) * 2;
+	for (i = l; i < l + 2; i++) 
+		for (j = c; j < c + 2; j++)
+			if (i != linha || j != coluna)	// verifica correnspondencia de número pelas linhas e colunas da subrelha
+				if (grelha4[i][j] == valor)	// verifica se o número é único dentro da subgrelha 3x3
+					return 0;	// retorna 0 caso valor seja inválido para a célula atual
+
+	return 1;
+}
+
+
+void print_grelha1()		// Imprime o puzzle de entrada e o resultado final
+{
+	int i, j;
+
+	for (i = 0; i < 5; i++) {
+		if (i % 2 == 0)
+			printf("+-----+-----+\n"); 	// Linhas horizontais
+
+		if (i == 4)
+			return; // se a linha for =4 então retorna sem fazer nada pois a grelha é 4x4
+
+		for (j = 0; j < 4; j++) {
+			if (j % 2 == 0)
+				printf("| ");
+
+			grelha1[i][j] != 0 ? printf("%d ", grelha1[i][j]) : printf(". "); 
+		}
+
+		printf("|\n"); // Linhas verticais
+	}
+}
+
+void print_grelha2()		// Imprime o puzzle de entrada e o resultado final
+{
+	int i, j;
+
+	for (i = 0; i < 5; i++) {
+		if (i % 2 == 0)
+			printf("+-----+-----+\n"); 	// Linhas horizontais
+
+		if (i == 4)
+			return; // se a linha for =4 então retorna sem fazer nada pois a grelha é 4x4
+
+		for (j = 0; j < 4; j++) {
+			if (j % 2 == 0)
+				printf("| ");
+
+			grelha2[i][j] != 0 ? printf("%d ", grelha2[i][j]) : printf(". "); 
+		}
+
+		printf("|\n"); // Linhas verticais
+	}
+}
+
+void print_grelha3()		// Imprime o puzzle de entrada e o resultado final
+{
+	int i, j;
+
+	for (i = 0; i < 5; i++) {
+		if (i % 2 == 0)
+			printf("+-----+-----+\n"); 	// Linhas horizontais
+
+		if (i == 4)
+			return; // se a linha for =4 então retorna sem fazer nada pois a grelha é 4x4
+
+		for (j = 0; j < 4; j++) {
+			if (j % 2 == 0)
+				printf("| ");
+
+			grelha3[i][j] != 0 ? printf("%d ", grelha3[i][j]) : printf(". "); 
+		}
+
+		printf("|\n"); // Linhas verticais
+	}
+}
+
+void print_grelha4()		// Imprime o puzzle de entrada e o resultado final
+{
+	int i, j;
+
+	for (i = 0; i < 5; i++) {
+		if (i % 2 == 0)
+			printf("+-----+-----+\n"); 	// Linhas horizontais
+
+		if (i == 4)
+			return; // se a linha for =4 então retorna sem fazer nada pois a grelha é 4x4
+
+		for (j = 0; j < 4; j++) {
+			if (j % 2 == 0)
+				printf("| ");
+
+			grelha4[i][j] != 0 ? printf("%d ", grelha4[i][j]) : printf(". "); 
+		}
+
+		printf("|\n"); // Linhas verticais
+	}
+}
